@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Real Estate Catalog</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar">
+        <a href="/" class="navbar-brand">DreamHome</a>
+        <div class="navbar-links">
+            <a href="/listings">Properties</a>
+            <a href="/about">About</a>
+            <a href="/contact">Contact</a>
+            <a href="/listings/add" class="btn-primary">+ Add Listing</a>
+        </div>
+    </nav>
+
+    <main>
+        <div class="listings-container">
+            <% listings.forEach(function(listing) { %>
+                <div class="listing-card">
+                    <img src="<%= listing.image.url %>" alt="<%= listing.title %>">
+                    <div class="content">
+                        <h3><%= listing.title %></h3>
+                        <p><%= listing.description %></p>
+                        <div class="price">$<%= listing.price.toLocaleString() %></div>
+                        <div class="location">
+                            📍 <%= listing.location %>, <%= listing.country %>
+                        </div>
+                        <div class="card-actions">
+                            <a href="/listings/edit/<%= listing._id %>">Edit</a>
+                            <form action="/listings/delete/<%= listing._id %>" method="POST">
+                                <button type="submit">Delete</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            <% }); %>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>About DreamHome</h3>
+                <p>Find your perfect property with our comprehensive real estate listings platform.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul class="footer-links">
+                    <li><a href="/listings">Properties</a></li>
+                    <li><a href="/about">About Us</a></li>
+                    <li><a href="/contact">Contact</a></li>
+                    <li><a href="/privacy">Privacy Policy</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Contact Us</h3>
+                <ul class="footer-links">
+                    <li>Email: info@dreamhome.com</li>
+                    <li>Phone: (555) 123-4567</li>
+                    <li>Address: 123 Real Estate Ave</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 DreamHome. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
